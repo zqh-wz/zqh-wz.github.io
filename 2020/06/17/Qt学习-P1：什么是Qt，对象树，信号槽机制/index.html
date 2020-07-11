@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Qt学习 P1：什么是Qt，对象树，信号槽机制 | Don&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="" />
+  
+
+  <meta name="description" content="学习资料：2019年最新QT从入门到实战完整版|传智播客 什么是QtQt是一个跨平台的C++图形用户界面应用程序框架。 1991年，Qt最早由奇趣科技开发。 Qt的应用案例：  Linux 桌面环境 KDE WPS Office 办公软件 Skype 网络通话 Google Earth 谷歌地图 VLC 多媒体播放器 ……  下载安装QtQt按照不同版本发行，分为商业版和开源版。 可以从清华大学开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt学习 P1：什么是Qt，对象树，信号槽机制">
+<meta property="og:url" content="http://yoursite.com/2020/06/17/Qt%E5%AD%A6%E4%B9%A0-P1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AFQt%EF%BC%8C%E5%AF%B9%E8%B1%A1%E6%A0%91%EF%BC%8C%E4%BF%A1%E5%8F%B7%E6%A7%BD%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="Don&#39;s Blog">
+<meta property="og:description" content="学习资料：2019年最新QT从入门到实战完整版|传智播客 什么是QtQt是一个跨平台的C++图形用户界面应用程序框架。 1991年，Qt最早由奇趣科技开发。 Qt的应用案例：  Linux 桌面环境 KDE WPS Office 办公软件 Skype 网络通话 Google Earth 谷歌地图 VLC 多媒体播放器 ……  下载安装QtQt按照不同版本发行，分为商业版和开源版。 可以从清华大学开">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-17T13:41:16.000Z">
+<meta property="article:modified_time" content="2020-06-19T13:14:53.072Z">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/writting.png">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">目录</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">目录</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Outline</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是Qt"><span class="toc-text">什么是Qt</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下载安装Qt"><span class="toc-text">下载安装Qt</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建Qt项目"><span class="toc-text">创建Qt项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QPushButton和第一个小程序"><span class="toc-text">QPushButton和第一个小程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用QDebug输出调试信息"><span class="toc-text">使用QDebug输出调试信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象树"><span class="toc-text">对象树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#信号和槽"><span class="toc-text">信号和槽</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义信号和槽"><span class="toc-text">自定义信号和槽</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重载时的自定义信号和槽与信号连接信号"><span class="toc-text">重载时的自定义信号和槽与信号连接信号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt4及以前版本的信号槽连接"><span class="toc-text">Qt4及以前版本的信号槽连接</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Qt学习-P1：什么是Qt，对象树，信号槽机制" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Qt学习 P1：什么是Qt，对象树，信号槽机制</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.06.17</span>
+      </span>
+
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Qt/">Qt</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>学习资料：<a href="https://www.bilibili.com/video/BV1g4411H78N" target="_blank" rel="noopener">2019年最新QT从入门到实战完整版|传智播客</a></p>
+<h1 id="什么是Qt"><a href="#什么是Qt" class="headerlink" title="什么是Qt"></a>什么是Qt</h1><p>Qt是一个跨平台的C++图形用户界面应用程序框架。</p>
+<p>1991年，Qt最早由奇趣科技开发。</p>
+<p>Qt的应用案例：</p>
+<ol>
+<li>Linux 桌面环境 KDE</li>
+<li>WPS Office 办公软件</li>
+<li>Skype 网络通话</li>
+<li>Google Earth 谷歌地图</li>
+<li>VLC 多媒体播放器</li>
+<li>……</li>
+</ol>
+<h1 id="下载安装Qt"><a href="#下载安装Qt" class="headerlink" title="下载安装Qt"></a>下载安装Qt</h1><p>Qt按照不同版本发行，分为商业版和开源版。</p>
+<p>可以从<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">清华大学开源软件镜像站</a>下载。</p>
+<h1 id="创建Qt项目"><a href="#创建Qt项目" class="headerlink" title="创建Qt项目"></a>创建Qt项目</h1><p>打开Qt Creator，点击New Project。</p>
+<p>在New Project对话框中选择Application—Qt Widgets Application，填写项目名称，类信息基类改为QWidget，创建界面不勾选，完成。</p>
+<p>新建的项目中自动生成了<code>.pro</code>文件，<code>main.cpp</code>，和<code>widget.cpp/.h</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">01</span>_FirstProject.pro</span><br><span class="line"></span><br><span class="line">#-------------------------------------------------</span><br><span class="line">#</span><br><span class="line"># Project created by QtCreator <span class="number">2020</span><span class="number">-06</span><span class="number">-17</span>T11:<span class="number">43</span>:<span class="number">06</span></span><br><span class="line">#</span><br><span class="line">#-------------------------------------------------</span><br><span class="line"></span><br><span class="line">QT       += core gui  # 加载的模块，需要时在此手动添加</span><br><span class="line"></span><br><span class="line">greaterThan(QT_MAJOR_VERSION, <span class="number">4</span>): QT += widgets</span><br><span class="line"></span><br><span class="line">TARGET = <span class="number">01</span>_FirstProject  # 生成的程序名</span><br><span class="line">TEMPLATE = app  # 应用程序模板</span><br><span class="line"></span><br><span class="line"># The following define makes your compiler emit warnings <span class="keyword">if</span> you use</span><br><span class="line"># any feature of Qt which as been marked as deprecated (the exact warnings</span><br><span class="line"># depend on your compiler). Please consult the documentation of the</span><br><span class="line"># deprecated API in order to know how to port your code away from it.</span><br><span class="line">DEFINES += QT_DEPRECATED_WARNINGS</span><br><span class="line"></span><br><span class="line"># You can also make your code fail to compile <span class="keyword">if</span> you use deprecated APIs.</span><br><span class="line"># In order to <span class="keyword">do</span> so, uncomment the following <span class="built_in">line</span>.</span><br><span class="line"># You can also select to disable deprecated APIs only up to a certain version of Qt.</span><br><span class="line">#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=<span class="number">0x060000</span>    # disables all the APIs deprecated before Qt <span class="number">6.0</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SOURCES += \  # 源文件</span><br><span class="line">        main.cpp \</span><br><span class="line">        widget.cpp</span><br><span class="line"></span><br><span class="line">HEADERS += \  # 头文件</span><br><span class="line">        widget.h</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">main.cpp</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"widget.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QApplication&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;  <span class="comment">// Qt应用程序类，有且仅有一个</span></span><br><span class="line">    Widget w;</span><br><span class="line">    w.show();  <span class="comment">// 对象需要调用show方法才能显示</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a.exec();  <span class="comment">// 程序进入消息循环</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">widget.h</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> WIDGET_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WIDGET_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWidget&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> :</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT  <span class="comment">// 一个宏定义</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Widget(QWidget *parent = <span class="number">0</span>);  <span class="comment">// 构造函数，有一个指向父亲的指针</span></span><br><span class="line">    ~Widget();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// WIDGET_H</span></span></span><br></pre></td></tr></table></figure>
+<p>使用新建向导还可以创建C++ Class等文件，<code>.pro</code>项目文件中会自动添加相关的文件名。</p>
+<h1 id="QPushButton和第一个小程序"><a href="#QPushButton和第一个小程序" class="headerlink" title="QPushButton和第一个小程序"></a>QPushButton和第一个小程序</h1><p>头文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QPushButton&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>在<code>widget.cpp</code>中Widget类的构造函数中创建新按钮：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Widget::Widget(QWidget *parent)</span><br><span class="line">    : QWidget(parent)</span><br><span class="line">&#123;</span><br><span class="line">    QPushButton *btn = <span class="keyword">new</span> QPushButton;</span><br><span class="line"><span class="comment">//    btn-&gt;show(); // 直接调用show方法将在新窗口中显示按钮</span></span><br><span class="line">    btn-&gt;setParent(<span class="keyword">this</span>); <span class="comment">// 设置父亲为Widget窗口，按钮将依附于父亲的窗口中</span></span><br><span class="line">    btn-&gt;setText(<span class="string">"Button1"</span>); <span class="comment">// 按钮文字</span></span><br><span class="line"></span><br><span class="line">    QPushButton *btn2 = <span class="keyword">new</span> QPushButton(<span class="string">"Button2"</span>, <span class="keyword">this</span>); <span class="comment">// 直接指定文字与父窗口</span></span><br><span class="line">    btn2-&gt;<span class="built_in">move</span>(<span class="number">100</span>, <span class="number">100</span>); <span class="comment">// 设置按钮位置</span></span><br><span class="line"></span><br><span class="line">    resize(<span class="number">600</span>, <span class="number">400</span>); <span class="comment">// 调整Widget窗口大小</span></span><br><span class="line">    setFixedSize(<span class="number">600</span>, <span class="number">400</span>); <span class="comment">// 固定窗口大小</span></span><br><span class="line"></span><br><span class="line">    setWindowTitle(<span class="string">"First Window"</span>); <span class="comment">// 设置窗口标题</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Qt的窗口坐标：</p>
+<p>左上角为原点(0, 0)，向右X坐标增加，向下Y坐标增加。</p>
+<h1 id="使用QDebug输出调试信息"><a href="#使用QDebug输出调试信息" class="headerlink" title="使用QDebug输出调试信息"></a>使用QDebug输出调试信息</h1><p>头文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QDebug&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>输出调试信息：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qDebug() &lt;&lt; <span class="string">"Debug!"</span>; <span class="comment">// 无需endl，自动换行</span></span><br></pre></td></tr></table></figure>
+<h1 id="对象树"><a href="#对象树" class="headerlink" title="对象树"></a>对象树</h1><p>Qt中对象的终极基类是<code>QObject</code>类，它以对象树的形式组织。</p>
+<p>当你创建<code>QObject</code>对象时，构造函数会接受一个<code>QObject</code>指针<code>parent</code>，父对象指针。创建的新对象会被自动添加到其父对象的<code>children()</code>列表。</p>
+<p>父对象析构时，<code>children()</code>列表中的所有对象也会被析构。</p>
+<p>Qt的对象树机制一定程度上自动解决了内存回收的问题。为了避免出现奇怪的错误，Qt鼓励在堆上直接创建对象，并在创建时就指定<code>parent</code>。</p>
+<h1 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h1><p>信号槽是Qt的重要机制。</p>
+<blockquote>
+<p>所谓信号槽，实际就是观察者模式。当某个事件发生之后，比如，按钮检测到自己被点击了一下，它就会发出一个信号（signal）。这种发出是没有目的的，类似广播。如果有对象对这个信号感兴趣，它就会使用连接（connect）函数，意思是，将想要处理的信号和自己的一个函数（称为槽（slot））绑定来处理这个信号。也就是说，当信号发出时，被连接的槽函数会自动被回调。这就类似观察者模式：当发生了感兴趣的事件，某一个操作就会被自动触发。</p>
+</blockquote>
+<p><code>connect()</code>函数的最常见形式由四部分组成<code>connect(sender, signal, receiver, slot)</code>，分别为信号的发送者、信号、信号的接收者、槽函数（即接收到信号后需要调用的函数）。</p>
+<p>利用系统自带的信号与槽（查阅帮助文档），可以在<code>Widget::Widget()</code>中添加以下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(btn2, &amp;QPushButton::clicked, <span class="keyword">this</span>, &amp;Widget::<span class="built_in">close</span>);</span><br></pre></td></tr></table></figure>
+<p>该行代码使得当按钮2被单击，窗口关闭。</p>
+<h1 id="自定义信号和槽"><a href="#自定义信号和槽" class="headerlink" title="自定义信号和槽"></a>自定义信号和槽</h1><p>在项目下新建类，继承自<code>QObject</code>类（使用自动回收机制）</p>
+<p>场景：当老师饿了，学生请老师吃饭。</p>
+<p>sender：老师</p>
+<p>signal：饿了</p>
+<p>receiver：学生</p>
+<p>slot：请老师吃饭</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">teacher.h</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TEACHER_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEACHER_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QObject&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> :</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Teacher</span><span class="params">(QObject *parent = <span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="comment">// 在此写入自定义信号，只需声明，无需实现</span></span><br><span class="line">    <span class="comment">// 返回值为void，可以有参数，可以重载</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// TEACHER_H</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">student.h</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STUDENT_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STUDENT_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QObject&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> :</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Student</span><span class="params">(QObject *parent = <span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// 早期Qt版本必须将槽函数写在此，高级版本可以写在public下或全局下</span></span><br><span class="line">    <span class="comment">// 返回值为void，需要实现，可以有参数，可以重载</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// STUDENT_H</span></span></span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line">student.cpp</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Student::treat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    qDebug() &lt;&lt; <span class="string">"请老师吃饭"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">widget.h</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWidget&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"teacher.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"student.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> :</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Widget(QWidget *parent = <span class="number">0</span>);</span><br><span class="line">    ~Widget();</span><br><span class="line"></span><br><span class="line">    Teacher *te;</span><br><span class="line">    Student *st;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ClassOver</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line">widget.cpp</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"widget.h"</span></span></span><br><span class="line"></span><br><span class="line">Widget::Widget(QWidget *parent)</span><br><span class="line">    : QWidget(parent)</span><br><span class="line">&#123;</span><br><span class="line">    te = <span class="keyword">new</span> Teacher(<span class="keyword">this</span>);</span><br><span class="line">    st = <span class="keyword">new</span> Student(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">connect</span>(te, &amp;Teacher::hungry, st, &amp;Student::treat); <span class="comment">// 创建链接</span></span><br><span class="line"></span><br><span class="line">    ClassOver(); <span class="comment">// 下课了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Widget::~Widget()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Widget::ClassOver</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    emit te-&gt;hungry(); <span class="comment">// 触发信号</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="重载时的自定义信号和槽与信号连接信号"><a href="#重载时的自定义信号和槽与信号连接信号" class="headerlink" title="重载时的自定义信号和槽与信号连接信号"></a>重载时的自定义信号和槽与信号连接信号</h1><p>添加重载函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">teacher.h</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">(QString foodName)</span></span>;</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line">student.h</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">(QString foodName)</span></span>;</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line">student.cpp</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Student::treat</span><span class="params">(QString foodName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    qDebug() &lt;&lt; <span class="string">"请老师吃"</span> &lt;&lt; foodName.toUtf8().data();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line">widget.cpp</span><br><span class="line"></span><br><span class="line">Widget::Widget(QWidget *parent)</span><br><span class="line">    : QWidget(parent)</span><br><span class="line">&#123;</span><br><span class="line">    te = <span class="keyword">new</span> Teacher(<span class="keyword">this</span>);</span><br><span class="line">    st = <span class="keyword">new</span> Student(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//    connect(te, &amp;Teacher::hungry, st, &amp;Student::treat); // 创建链接</span></span><br><span class="line">    <span class="keyword">void</span> (Teacher::*teacherSignal)(QString) = &amp;Teacher::hungry;</span><br><span class="line">    <span class="keyword">void</span> (Student::*studentSlot)(QString) = &amp;Student::treat; <span class="comment">// 注意变量名前需要加上类名</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">connect</span>(te, teacherSignal, st, studentSlot); <span class="comment">// 使用函数指针得到正确的函数地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    ClassOver();</span></span><br><span class="line"></span><br><span class="line">    QPushButton *btn = <span class="keyword">new</span> QPushButton(<span class="string">"下课"</span>, <span class="keyword">this</span>);</span><br><span class="line">    resize(<span class="number">600</span>, <span class="number">400</span>);</span><br><span class="line">    <span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, <span class="keyword">this</span>, &amp;Widget::ClassOver); <span class="comment">// 按钮触发ClassOver()</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> (Teacher::*teacherSignal2)() = &amp;Teacher::hungry;</span><br><span class="line">    <span class="keyword">void</span> (Student::*studentSlot2)() = &amp;Student::treat;</span><br><span class="line">    <span class="built_in">connect</span>(te, teacherSignal2, st, studentSlot2); <span class="comment">// 连接无参数版本</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, te, teacherSignal2); <span class="comment">// 信号直接连接信号</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">disconnect</span>(te, teacherSignal2, st, studentSlot2); <span class="comment">// 断开信号</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Widget::ClassOver</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//    emit te-&gt;hungry(); // 触发信号</span></span><br><span class="line">    emit te-&gt;hungry(<span class="string">"宫保鸡丁"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>信号也可以直接连接信号。</p>
+<p>可以使用<code>disconnect()</code>断开信号。</p>
+<p>注意点：</p>
+<ul>
+<li><p>一个信号可以连接多个槽函数。</p>
+</li>
+<li><p>多个信号可以连接同一个槽函数。</p>
+</li>
+<li><p>信号与槽函数的参数类型必须一一对应</p>
+</li>
+<li>信号的参数数量可以多于槽函数的参数数量（但匹配的部分参数类型必须一一对应）</li>
+</ul>
+<p>信号槽经常和Lambda表达式结合使用。</p>
+<h1 id="Qt4及以前版本的信号槽连接"><a href="#Qt4及以前版本的信号槽连接" class="headerlink" title="Qt4及以前版本的信号槽连接"></a>Qt4及以前版本的信号槽连接</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(te, SIGNAL(hungry()), st, SLOT(treat()));</span><br><span class="line"><span class="built_in">connect</span>(te, SIGNAL(hungry(QString)), st, SLOT(treat(QString)));</span><br></pre></td></tr></table></figure>
+<p>优点：参数直观</p>
+<p>缺点：编译时类型不做检测</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

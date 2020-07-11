@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>JavaScript初探 | Don&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="" />
+  
+
+  <meta name="description" content="JavaScript是一种轻量级的脚本语言，可插入HTML页面，由浏览器执行。 使用&lt;script&gt;标签可以在HTML中插入JavaScript。 JavaScript基础输出： 12document.write(&quot;&lt;h1&gt;标签h1&lt;&#x2F;h1&gt;&quot;);console.log(&quot;hello&quot;); &#x2F;&#x2F; 控制台输出 JavaScript代码按照编写顺序执行。 单行注释和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript初探">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/JavaScript%E5%88%9D%E6%8E%A2/index.html">
+<meta property="og:site_name" content="Don&#39;s Blog">
+<meta property="og:description" content="JavaScript是一种轻量级的脚本语言，可插入HTML页面，由浏览器执行。 使用&lt;script&gt;标签可以在HTML中插入JavaScript。 JavaScript基础输出： 12document.write(&quot;&lt;h1&gt;标签h1&lt;&#x2F;h1&gt;&quot;);console.log(&quot;hello&quot;); &#x2F;&#x2F; 控制台输出 JavaScript代码按照编写顺序执行。 单行注释和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.runoob.com/images/htmltree.gif">
+<meta property="og:image" content="https://bkimg.cdn.bcebos.com/pic/810a19d8bc3eb135481babffac1ea8d3fc1f4491?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5">
+<meta property="article:published_time" content="2020-07-04T13:05:48.000Z">
+<meta property="article:modified_time" content="2020-07-04T14:34:46.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/images/htmltree.gif">
+
+  
+
+  
+    <link rel="icon" href="/writting.png">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">目录</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">目录</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Outline</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript基础"><span class="toc-text">JavaScript基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript异常捕获"><span class="toc-text">JavaScript异常捕获</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript事件"><span class="toc-text">JavaScript事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM"><span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作HTML元素"><span class="toc-text">操作HTML元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作CSS"><span class="toc-text">操作CSS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM-EventListener"><span class="toc-text">DOM EventListener</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件流"><span class="toc-text">事件流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件处理"><span class="toc-text">事件处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件对象"><span class="toc-text">事件对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript对象"><span class="toc-text">JavaScript对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义对象"><span class="toc-text">自定义对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String字符串对象"><span class="toc-text">String字符串对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Date日期对象"><span class="toc-text">Date日期对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array数组对象"><span class="toc-text">Array数组对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Math对象"><span class="toc-text">Math对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM对象控制HTML"><span class="toc-text">DOM对象控制HTML</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#浏览器对象"><span class="toc-text">浏览器对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#window对象"><span class="toc-text">window对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计时事件"><span class="toc-text">计时事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#History对象"><span class="toc-text">History对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Location对象"><span class="toc-text">Location对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Screen对象"><span class="toc-text">Screen对象</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-JavaScript初探" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">JavaScript初探</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.07.04</span>
+      </span>
+
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>JavaScript是一种轻量级的脚本语言，可插入HTML页面，由浏览器执行。</p>
+<p>使用<code>&lt;script&gt;</code>标签可以在HTML中插入JavaScript。</p>
+<h1 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h1><p>输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;标签h1&lt;/h1&gt;"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"hello"</span>); <span class="comment">// 控制台输出</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript代码按照编写顺序执行。</p>
+<p>单行注释和多行注释形式与C/C++相同。</p>
+<p>变量定义：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> y = x + <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>数据类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">"hello"</span>; <span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">var</span> i1 = <span class="number">10</span>; <span class="comment">// 数字</span></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>; <span class="comment">// 布尔</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]; <span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 数组定义2</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(); <span class="comment">// 数组定义3</span></span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">1</span>; arr[<span class="number">1</span>] = <span class="number">2</span>; arr[<span class="number">2</span>] = <span class="number">3</span>; arr[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"><span class="built_in">document</span>.write(arr[<span class="number">2</span>]); <span class="comment">// 下标从0开始</span></span><br><span class="line"><span class="keyword">var</span> n = <span class="literal">null</span>; <span class="comment">// 空类型</span></span><br><span class="line"><span class="keyword">var</span> r; <span class="comment">// 未定义</span></span><br><span class="line">i1 = <span class="literal">null</span>; <span class="comment">// 通过赋值为null清除类型</span></span><br></pre></td></tr></table></figure>
+<p>运算符：</p>
+<p>基本与C相同。</p>
+<p>字符串可以直接用+拼接。</p>
+<p>“==”：<code>&quot;100&quot; == 100</code>值为<code>true</code>。</p>
+<p>“===”：<code>&quot;100&quot; == 100</code>值为<code>false</code>。</p>
+<p>“!=”与”!==”同理。</p>
+<p>条件语句：</p>
+<p>与C相同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span> (i &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">	<span class="built_in">document</span>.write(<span class="string">"i&gt;=10"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">"i&lt;10"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">switch</span> (i) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>循环：</p>
+<p>与C基本相同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++) &#123;</span><br><span class="line">	<span class="built_in">document</span>.write(i[j]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> j;</span><br><span class="line"><span class="keyword">for</span> (j <span class="keyword">in</span> i) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(i[j]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (...) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125; <span class="keyword">while</span> (...);</span><br></pre></td></tr></table></figure>
+<p>跳转语句：</p>
+<p><code>continue</code>、<code>break</code>。与C相同。</p>
+<p>函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> sum = a + b;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> v1 = demo(<span class="number">20</span>, <span class="number">10</span>);</span><br><span class="line">alert(v1); <span class="comment">// 弹出框</span></span><br></pre></td></tr></table></figure>
+<p>函数既可以在JavaScript脚本中被调用，也可以在HTML中调用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"fun()"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>局部变量与全局变量：</p>
+<p>在函数中定义的为局部变量，在外定义的都是全局变量。</p>
+<p>类似python。</p>
+<h1 id="JavaScript异常捕获"><a href="#JavaScript异常捕获" class="headerlink" title="JavaScript异常捕获"></a>JavaScript异常捕获</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	alert(str);</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">	alert(err);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>捕获<code>str</code>未定义错误。</p>
+<p>用<code>throw</code>语句可以抛出自定义错误。</p>
+<h1 id="JavaScript事件"><a href="#JavaScript事件" class="headerlink" title="JavaScript事件"></a>JavaScript事件</h1><p>JavaScript允许在HTML事件被侦测到时执行代码。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">事件</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">onchange</td>
+<td style="text-align:left">HTML 元素已被改变</td>
+</tr>
+<tr>
+<td style="text-align:left">onclick</td>
+<td style="text-align:left">用户点击了 HTML 元素</td>
+</tr>
+<tr>
+<td style="text-align:left">onmouseover</td>
+<td style="text-align:left">用户把鼠标移动到 HTML 元素上</td>
+</tr>
+<tr>
+<td style="text-align:left">onmouseout</td>
+<td style="text-align:left">用户把鼠标移开 HTML 元素</td>
+</tr>
+<tr>
+<td style="text-align:left">onkeydown</td>
+<td style="text-align:left">用户按下键盘按键</td>
+</tr>
+<tr>
+<td style="text-align:left">onload</td>
+<td style="text-align:left">浏览器已经完成页面加载</td>
+</tr>
+<tr>
+<td style="text-align:left">onunload</td>
+<td style="text-align:left">关闭网页事件</td>
+</tr>
+<tr>
+<td style="text-align:left">onselect</td>
+<td style="text-align:left">文本框选中事件</td>
+</tr>
+<tr>
+<td style="text-align:left">onfocus</td>
+<td style="text-align:left">光标聚焦事件</td>
+</tr>
+<tr>
+<td style="text-align:left">onblur</td>
+<td style="text-align:left">移开光标事件</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><p>当网页被加载时，浏览器会创建页面的<strong>文档对象模型</strong>（Document Object Model, DOM）。</p>
+<p><img src="https://www.runoob.com/images/htmltree.gif" alt="DOM HTML tree"></p>
+<h2 id="操作HTML元素"><a href="#操作HTML元素" class="headerlink" title="操作HTML元素"></a>操作HTML元素</h2><ol>
+<li><p>改变HTML输出流</p>
+<p>在文档加载完成之后再使用<code>document.write()</code>会覆盖原文档。</p>
+</li>
+<li><p>寻找元素</p>
+<p><code>document.getElementById(&quot;pid&quot;)</code>通过id定位元素。</p>
+<p><code>document.getElementsByTagName(&quot;p&quot;)</code>通过标签定位元素。</p>
+</li>
+<li><p>改变HTML内容</p>
+<p>属性<code>innerHTML</code>为元素内容。</p>
+</li>
+<li><p>改变HTML属性</p>
+<p>属性<code>attributes</code>为元素属性集合。</p>
+<p>可以直接通过<code>.color/.href</code>等方式直接修改属性。</p>
+</li>
+</ol>
+<h2 id="操作CSS"><a href="#操作CSS" class="headerlink" title="操作CSS"></a>操作CSS</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"div"</span>).style.background = <span class="string">"blue"</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="DOM-EventListener"><a href="#DOM-EventListener" class="headerlink" title="DOM EventListener"></a>DOM EventListener</h1><p><code>addEventListener()</code>方法用于向指定元素添加事件句柄。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">"hello!"</span>)&#125;);</span><br></pre></td></tr></table></figure>
+<p>可以添加多个事件句柄，事件句柄之间不会覆盖。</p>
+<p><code>removeEventListener()</code>方法用于移除指定事件句柄。</p>
+<h1 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h1><p>事件流描述页面中接收事件的顺序。</p>
+<p>事件冒泡：从最内层向外依次接收。</p>
+<p>事件捕获：从最外层向内依次接收。</p>
+<h1 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h1><ol>
+<li><p>HTML事件处理</p>
+<p>直接添加到HTML结构中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span> <span class="attr">onclick</span>=<span class="string">"fun()"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        alert(<span class="string">"Hello"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DOM 0级事件处理</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span></span><br><span class="line"><span class="actionscript">    btn.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;alert(<span class="string">"Hello"</span>);&#125;;</span></span><br><span class="line"><span class="actionscript">    btn.onclick = <span class="literal">null</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DOM 2级事件处理</p>
+<p><code>btn.addEventListener()</code>，参数分别为事件名、事件处理函数、布尔值（true为事件捕获/false为事件冒泡）。</p>
+</li>
+</ol>
+<h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1><p>在触发DOM事件时会产生一个对象，称为事件对象event。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).addEventListener(<span class="string">"click"</span>, fun);</span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">(event)</span> </span>&#123; <span class="comment">// 获得事件对象</span></span></span><br><span class="line">        alert(event.type);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>type</code>属性：获取事件类型</li>
+<li><code>target</code>属性：获取事件目标</li>
+<li><code>stopPropagation()</code>方法：阻止事件冒泡</li>
+<li><code>preventDefault()</code>方法：阻止事件默认行为</li>
+</ul>
+<h1 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h1><h2 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">people = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">// 创建自定义对象</span></span><br><span class="line">people.name = <span class="string">"iwen"</span>;</span><br><span class="line">people.age = <span class="string">"30"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> people = &#123;<span class="attr">name</span>:<span class="string">"iwen"</span>, <span class="attr">age</span>:<span class="string">"30"</span>&#125;; <span class="comment">// 创建自定义对象</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">people</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> son = <span class="keyword">new</span> people(<span class="string">"iwen"</span>, <span class="number">30</span>); <span class="comment">// 创建自定义对象</span></span><br></pre></td></tr></table></figure>
+<h2 id="String字符串对象"><a href="#String字符串对象" class="headerlink" title="String字符串对象"></a>String字符串对象</h2><p>字符串可以使用单引号或双引号创建。</p>
+<ul>
+<li><code>length</code>属性：字符串长度</li>
+<li><code>indexOf()</code>方法：返回子串位置</li>
+<li><code>match()</code>方法：正则表达式匹配，返回匹配串</li>
+<li><code>replace()</code>方法：替换子串</li>
+<li><code>toUpperCase()/toLowerCase()</code>：大小写转换</li>
+<li><code>split()</code>方法：分割字符串，返回一个数组</li>
+</ul>
+<h2 id="Date日期对象"><a href="#Date日期对象" class="headerlink" title="Date日期对象"></a>Date日期对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">// 获取当前日期对象</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>getFullYear()</code>方法：获取年份</li>
+<li><code>getTime()</code>方法：获取毫秒数</li>
+<li><code>setFullYear()</code>方法：设置时间</li>
+<li><code>getDay()</code>方法：获取星期</li>
+</ul>
+<h2 id="Array数组对象"><a href="#Array数组对象" class="headerlink" title="Array数组对象"></a>Array数组对象</h2><ul>
+<li><code>concat()</code>方法：合并数组</li>
+<li><code>sort()</code>方法：排序，参数可传cmp函数</li>
+<li><code>push()</code>方法：在末尾追加元素</li>
+<li><code>reverse()</code>方法：翻转</li>
+</ul>
+<h2 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h2><p>用于执行常见的算术任务。</p>
+<ul>
+<li><p><code>Math.round()</code>：四舍五入</p>
+</li>
+<li><p><code>Math.random()</code>：产生一个从0到1的随机数</p>
+</li>
+<li><p><code>Math.max()/Math.min()</code>：最大值/最小值</p>
+</li>
+<li><p><code>Math.abs()</code>：绝对值</p>
+</li>
+</ul>
+<h1 id="DOM对象控制HTML"><a href="#DOM对象控制HTML" class="headerlink" title="DOM对象控制HTML"></a>DOM对象控制HTML</h1><p>方法与属性：</p>
+<ul>
+<li><code>getElementsByName()</code>：根据name获取元素</li>
+<li><code>getElementsByTagName()</code>：根据标签获取元素</li>
+<li><code>getAttribute()</code>：获取元素属性</li>
+<li><code>setAttribute()</code>：设置元素属性</li>
+<li><code>childNodes</code>：子节点</li>
+<li><code>parentNode</code>：父节点</li>
+<li><code>createElement()</code>：创建元素节点</li>
+<li><code>createTextNode()</code>：创建文本节点</li>
+<li><code>insertBefore()</code>：插入节点</li>
+<li><code>appendChild()</code>：添加结点</li>
+<li><code>removeChild()</code>：删除节点</li>
+<li><code>offsetHeight</code>：网页尺寸</li>
+</ul>
+<h1 id="浏览器对象"><a href="#浏览器对象" class="headerlink" title="浏览器对象"></a>浏览器对象</h1><p><strong>浏览器对象模型</strong>（Browser Object Model，BOM）提供了独立于内容而与浏览器窗口进行交互的对象。</p>
+<p><img src="https://bkimg.cdn.bcebos.com/pic/810a19d8bc3eb135481babffac1ea8d3fc1f4491?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5" alt="img"></p>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>window对象是BOM的核心，指当前的浏览器窗口。</p>
+<p>所有JavaScript全局对象、函数以及变量均自动成为window对象的成员。</p>
+<p>HTML DOM的document也是window对象的属性。</p>
+<ul>
+<li><code>innerHeight</code>属性：浏览器窗口内部高度</li>
+<li><code>innerWidth</code>属性：浏览器窗口内部宽度</li>
+<li><code>open()</code>方法：打开新窗口，第一个参数为URL</li>
+<li><code>close()</code>方法：关闭窗口</li>
+</ul>
+<h2 id="计时事件"><a href="#计时事件" class="headerlink" title="计时事件"></a>计时事件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> t = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"hello"</span>);</span><br><span class="line">&#125;, <span class="number">5000</span>); <span class="comment">// 重复执行</span></span><br><span class="line"></span><br><span class="line">clearInterval(t); <span class="comment">// 停止重复</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> t = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    close();</span><br><span class="line">&#125;, <span class="number">1000</span>); <span class="comment">// 延时执行</span></span><br><span class="line"></span><br><span class="line">clearTimeout(t); <span class="comment">// 停止该延时执行</span></span><br></pre></td></tr></table></figure>
+<h2 id="History对象"><a href="#History对象" class="headerlink" title="History对象"></a>History对象</h2><p><code>window.history</code>对象包含浏览器历史记录url的集合。</p>
+<ul>
+<li><code>history.back()</code>方法：返回上一页面</li>
+<li><code>history.forward()</code>方法：返回下一页面</li>
+<li><code>history.go()</code>方法：跳转某一页面，-1为上一页面，1为下一页面</li>
+</ul>
+<h2 id="Location对象"><a href="#Location对象" class="headerlink" title="Location对象"></a>Location对象</h2><p><code>window.location</code>对象用于获得当前页面的地址，并把浏览器重定向到新的页面。</p>
+<ul>
+<li><code>hostname</code>属性：返回web主机的域名</li>
+<li><code>pathname</code>属性：返回当前页面的路径和文件名</li>
+<li><code>port</code>属性：返回web主机的端口</li>
+<li><code>protocol</code>属性：返回所使用的web协议</li>
+<li><code>href</code>属性：返回当前页面的URL</li>
+<li><code>assign()</code>方法：加载新的文档</li>
+</ul>
+<h2 id="Screen对象"><a href="#Screen对象" class="headerlink" title="Screen对象"></a>Screen对象</h2><p><code>window.screen</code>对象包含有关用户屏幕的信息。</p>
+<ul>
+<li><code>availWidth</code>属性：可用屏幕宽度</li>
+<li><code>availHeight</code>属性：可用屏幕高度</li>
+<li><code>Height</code>属性：屏幕高度</li>
+<li><code>Width</code>属性：屏幕宽度</li>
+</ul>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
