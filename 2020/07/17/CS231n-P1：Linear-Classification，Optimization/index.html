@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>CS231n P1：Linear Classification，Optimization | Don&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="" />
+  
+
+  <meta name="description" content="Image Classification PipelineData-Driven Approach Collect a dataset of images and labels Use Machine Learning to train a classifier Evaluate the classifier on new images  数据驱动方法：分为train和predict两个步骤，前者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS231n P1：Linear Classification，Optimization">
+<meta property="og:url" content="http://yoursite.com/2020/07/17/CS231n-P1%EF%BC%9ALinear-Classification%EF%BC%8COptimization/index.html">
+<meta property="og:site_name" content="Don&#39;s Blog">
+<meta property="og:description" content="Image Classification PipelineData-Driven Approach Collect a dataset of images and labels Use Machine Learning to train a classifier Evaluate the classifier on new images  数据驱动方法：分为train和predict两个步骤，前者">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-17T04:57:58.000Z">
+<meta property="article:modified_time" content="2020-07-17T05:11:12.317Z">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/writting.png">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">目录</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">目录</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Outline</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Image-Classification-Pipeline"><span class="toc-text">Image Classification Pipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Driven-Approach"><span class="toc-text">Data-Driven Approach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-Dataset"><span class="toc-text">Example Dataset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Measure-Distance"><span class="toc-text">Measure Distance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KNN"><span class="toc-text">KNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hyperparameters"><span class="toc-text">Hyperparameters</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linear-Classification"><span class="toc-text">Linear Classification</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Loss-Function"><span class="toc-text">Loss Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiclass-SVM-Loss"><span class="toc-text">Multiclass SVM Loss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regularization"><span class="toc-text">Regularization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Softmax-Classifier-Multinomial-Logistic-Regression"><span class="toc-text">Softmax Classifier (Multinomial Logistic Regression)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Optimization"><span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stochastic-Gradient-Descent"><span class="toc-text">Stochastic Gradient Descent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Image-Feature"><span class="toc-text">Image Feature</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-CS231n-P1：Linear-Classification，Optimization" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">CS231n P1：Linear Classification，Optimization</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.07.17</span>
+      </span>
+
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/CS231n/">CS231n</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Image-Classification-Pipeline"><a href="#Image-Classification-Pipeline" class="headerlink" title="Image Classification Pipeline"></a>Image Classification Pipeline</h1><h2 id="Data-Driven-Approach"><a href="#Data-Driven-Approach" class="headerlink" title="Data-Driven Approach"></a>Data-Driven Approach</h2><ol>
+<li>Collect a dataset of images and labels</li>
+<li>Use Machine Learning to train a classifier</li>
+<li>Evaluate the classifier on new images</li>
+</ol>
+<p>数据驱动方法：分为<code>train</code>和<code>predict</code>两个步骤，前者输入<code>images</code>和<code>labels</code>输出一个模型，后者输入模型和测试数据预测标签。</p>
+<h2 id="Example-Dataset"><a href="#Example-Dataset" class="headerlink" title="Example Dataset"></a>Example Dataset</h2><p>CIFAR10可以为深度学习提供数据集。</p>
+<p><a href="http://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="noopener"><em>CIFAR</em>-10 and <em>CIFAR</em>-100 datasets</a></p>
+<h2 id="Measure-Distance"><a href="#Measure-Distance" class="headerlink" title="Measure Distance"></a>Measure Distance</h2><p>如何衡量两张图片的差异度？</p>
+<p>图片一般储存为数字矩阵（RGB三通道），可以尝试使用L1 distance或L2 distance。</p>
+<p>L1 distance(Manhattan distance)即</p>
+<script type="math/tex; mode=display">
+d_1(I_1, I_2) = \sum_{p}|I^p_1 - I^p_2|</script><p>L2 distance(Euclidean distance)即</p>
+<script type="math/tex; mode=display">
+d_2(I_1, I_2) = \sqrt{\sum_{p}(I^p_1 - I^p_2)^2}</script><h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p>K-Nearest Neighbors Classifier（KNN，K近邻分类器）根据最近的K个数据点决定测试数据的分类。</p>
+<p>对于一个输入数据，在训练数据中寻找出与之距离最近的$k$个数据点，由这$k$个数据点所属的标签进行投票，$k$个中出现次数最多的标签就认为是输入数据的分类结果。</p>
+<p>KNN的<code>train</code>函数只是将训练数据储存下来，<code>predict</code>函数对测试数据进行归类。</p>
+<p>当$k=1$时，KNN变为Nearest Neighbor Classifier，最近邻分类器。不难发现最近邻分类器极容易受到噪声的干扰，这也是KNN更优的一个理由。</p>
+<p>当然，KNN在实际中绝不会用于图像识别，首先测试的巨大时间开销显然不合理，其次这一种图片的距离衡量方式并不能很好地体现图片所包含的信息。</p>
+<p>另一个重要的问题就是维度灾难（Curse of Dimensionality），当维数越来越高时，为了使样本空间能够保持稠密性，需要的数据量呈指数增长。</p>
+<h2 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h2><p>类似KNN中的$k$值和distance计算方式（L1 / L2 / ……）的一类参数被称为hyperparameters（超参数），它们是不能从机器学习中所习得的内容，与问题的实际情况高度相关，需要手动指定。</p>
+<p>因此我们需要通过数据测试来确定最佳的超参数。</p>
+<p>一般的做法是将所有数据分为三组：train、validation和test。</p>
+<p>train部分数据用于训练模型，validation部分数据用于测试模型的正确率。我们通过调整超参数，使得训练出的模型在validation数据中能够获得最好的准确率。最后用test数据检测这个算法的真正准确率（写到paper上的准确率）。</p>
+<p>另一种做法是Cross-Validation，交叉验证。</p>
+<p>将数据分为若干folds，第一次以fold 1、fold 2、……、fold 4作为train，fold 5作为validation；第二次以fold 1、fold 2、……、fold 3、fold 5作为train，fold 4作为validation；……</p>
+<p>最后取五次的平均值作为此次训练的准确率。</p>
+<p>这种方法一般只会在小数据集中使用，并不会经常在机器学习中使用。</p>
+<h1 id="Linear-Classification"><a href="#Linear-Classification" class="headerlink" title="Linear Classification"></a>Linear Classification</h1><script type="math/tex; mode=display">
+\text{Image x} \longrightarrow f(x, W) \longrightarrow \text{10 numbers giving class score} \\
+W:\text{parameters or weights}</script><h2 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h2><p>损失函数用于定量地判断参数矩阵$W$的优劣。</p>
+<script type="math/tex; mode=display">
+L = \frac{1}{N} \sum_{i}L_i(f(x_i, W), y_i)</script><p>整个数据集的Loss定义为每个数据Loss的均值。</p>
+<h2 id="Multiclass-SVM-Loss"><a href="#Multiclass-SVM-Loss" class="headerlink" title="Multiclass SVM Loss"></a>Multiclass SVM Loss</h2><p>对于数据$(x_i, y_i)$，$s = f(x_i, W)$，</p>
+<script type="math/tex; mode=display">
+L_i = \sum_{j \neq y_i} max(0, (s_j + 1) - s_{y_i})</script><p>$1$为Safety margin，即要求正确项的得分应比错误项的得分高出一个安全边距。</p>
+<p>这种函数的图像像一个合页，因此也被称为hinge loss（合页损失函数）。</p>
+<h2 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h2><p>仅对训练数据拟合容易出现过拟合的情况，典型例子就是将直线上的散点完美拟合到高次曲线上。</p>
+<p>因此一般会对Loss function添加Regularization正则化，选出“最简单”的模型。</p>
+<script type="math/tex; mode=display">
+L(W) = \underbrace{\frac{1}{N} \sum_{i=1}^{N}L_i(f(x_i, W), y_i)}_{\textbf{Data loss}\text{: Model predictions} \\ \text{should match training data}}
++
+\underbrace{\lambda R(W)}_{\textbf{Regularization}\text{: Model} \\ \text{should be “simple”, so it} \\ \text{works on test data}}</script><p>超参数regularization strength$\lambda$用于权衡公式中两者的占比。</p>
+<p>常见的正则化：</p>
+<ul>
+<li>L2 Regularization $R(W) = \sum_{k}\sum_{l}W^2_{k, l}$，即L2范数</li>
+<li>L1 Regularization $R(W) = \sum_{k}\sum_{l}|W_{k, l}|$，即L1范数</li>
+<li>Elastic net Regularization 弹性网络正则化 $R(W) = \sum_{k}\sum_{l}\beta W_{k, l}^2 + |W_{k, l}|$，即L1与L2的结合</li>
+<li>Max norm regularization</li>
+<li>Dropout</li>
+<li>……</li>
+</ul>
+<h2 id="Softmax-Classifier-Multinomial-Logistic-Regression"><a href="#Softmax-Classifier-Multinomial-Logistic-Regression" class="headerlink" title="Softmax Classifier (Multinomial Logistic Regression)"></a>Softmax Classifier (Multinomial Logistic Regression)</h2><p>对scores做归一化指数处理，得到概率形式的结果（使用$e$指数的目的是得到正值）：</p>
+<script type="math/tex; mode=display">
+P(Y=k|X=x_i) = \frac{e^{s_k}}{\sum_{j}e^{s_j}} \\
+L_i = -\log {P(Y=y_i|X=x_i)}</script><p>即：</p>
+<script type="math/tex; mode=display">
+L_i = -\log({\frac{e^{s_{y_i}}}{\sum_{j}e^{s_j}}})</script><blockquote>
+<p>在正确分类项的得分超过一个阈值时，SVM倾向于不再管它。</p>
+<p>但Softmax倾向于不断地增大正确分类项的对应分值，并不断减小错误分类项的对应分值。</p>
+</blockquote>
+<h1 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h1><p>梯度下降法（Gradient Descent）是常用的最优化方法。</p>
+<p>我们可以通过计算有限差分来获得数值梯度，但这种方法非常慢，且结果并不尽如人意。</p>
+<p>更合理的方式是使用分析性质计算解析梯度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Vanilla Gradient Descent</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    weights_grad = evaluate_gradient(loss_fun, data, weights)</span><br><span class="line">    weights += -step_size * weight_grad <span class="comment"># perform parameter update</span></span><br></pre></td></tr></table></figure>
+<h2 id="Stochastic-Gradient-Descent"><a href="#Stochastic-Gradient-Descent" class="headerlink" title="Stochastic Gradient Descent"></a>Stochastic Gradient Descent</h2><p>数据量较大时，每次都对所有数据计算Loss function并求平均值会是一笔很大的开销。使用Stochastic Gradient Descent（随机梯度下降），每次从数据集中随机抽取一部分数据（称为minibatch）用于计算梯度，可以加快速度。</p>
+<h2 id="Image-Feature"><a href="#Image-Feature" class="headerlink" title="Image Feature"></a>Image Feature</h2><p>直接将图像的原始数据作为分类器的输入数据可能并不是一个很好的选择，以图像的某些特征作为数据参数可能使数据更线性可分。</p>
+<p>一些想法是使用颜色直方图Color Histogram、有向梯度直方图Histogram of Oriented Gradients或Bag of Words等方式提取图像特征。</p>
+<p>然而，卷积神经网络等神经网络能够直接从数据中提取并学习特征。</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
