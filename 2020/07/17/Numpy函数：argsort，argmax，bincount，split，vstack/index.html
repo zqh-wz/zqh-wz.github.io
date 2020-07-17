@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Numpy函数：argsort，argmax，bincount，split，vstack | Don&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="" />
+  
+
+  <meta name="description" content="numpy.argsortargsort(a, axis&#x3D;-1, kind&#x3D;None, order&#x3D;None) 返回从小到大排序后的下标列表。 参数：  a：待排序的array axis：一个int，指示排序维度，-1表示最后一维 kind：{‘quicksort’, ‘mergesort’, ‘heapsort’, ‘stable’}，排序方法，默认为‘quicksort’ order：定义排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy函数：argsort，argmax，bincount，split，vstack">
+<meta property="og:url" content="http://yoursite.com/2020/07/17/Numpy%E5%87%BD%E6%95%B0%EF%BC%9Aargsort%EF%BC%8Cargmax%EF%BC%8Cbincount%EF%BC%8Csplit%EF%BC%8Cvstack/index.html">
+<meta property="og:site_name" content="Don&#39;s Blog">
+<meta property="og:description" content="numpy.argsortargsort(a, axis&#x3D;-1, kind&#x3D;None, order&#x3D;None) 返回从小到大排序后的下标列表。 参数：  a：待排序的array axis：一个int，指示排序维度，-1表示最后一维 kind：{‘quicksort’, ‘mergesort’, ‘heapsort’, ‘stable’}，排序方法，默认为‘quicksort’ order：定义排序">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-17T10:56:22.000Z">
+<meta property="article:modified_time" content="2020-07-17T10:58:09.884Z">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/writting.png">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">目录</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">目录</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Outline</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#numpy-argsort"><span class="toc-text">numpy.argsort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#numpy-argmax-argmin"><span class="toc-text">numpy.argmax&#x2F;argmin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#numpy-bincount"><span class="toc-text">numpy.bincount</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#numpy-split-array-split"><span class="toc-text">numpy.split&#x2F;array_split</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#numpy-vstack-hstack"><span class="toc-text">numpy.vstack&#x2F;hstack</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Numpy函数：argsort，argmax，bincount，split，vstack" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Numpy函数：argsort，argmax，bincount，split，vstack</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.07.17</span>
+      </span>
+
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Numpy/">Numpy</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="numpy-argsort"><a href="#numpy-argsort" class="headerlink" title="numpy.argsort"></a>numpy.argsort</h1><p><strong>argsort(a, axis=-1, kind=None, order=None)</strong></p>
+<p>返回从小到大排序后的下标列表。</p>
+<p>参数：</p>
+<ul>
+<li><code>a</code>：待排序的array</li>
+<li><code>axis</code>：一个int，指示排序维度，-1表示最后一维</li>
+<li><code>kind</code>：{‘quicksort’, ‘mergesort’, ‘heapsort’, ‘stable’}，排序方法，默认为‘quicksort’</li>
+<li><code>order</code>：定义排序顺序</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(np.argsort([<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]))</span><br><span class="line"></span><br><span class="line">a = np.array([<span class="number">1</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">print(a[np.argsort(a)[:<span class="number">2</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[0 4 2 3 1]</span><br><span class="line">[1 2]</span><br></pre></td></tr></table></figure>
+<h1 id="numpy-argmax-argmin"><a href="#numpy-argmax-argmin" class="headerlink" title="numpy.argmax/argmin"></a>numpy.argmax/argmin</h1><p><strong>numpy.argmax(a, axis=None, out=None)</strong></p>
+<p><strong>numpy.argmin(a, axis=None, out=None)</strong></p>
+<p>返回最大/小值的下标。</p>
+<p>参数：</p>
+<ul>
+<li><code>a</code>：待排序的array</li>
+<li><code>axis</code>：一个int，指示排序维度，默认对array做扁平化处理</li>
+<li><code>out</code>：将结果加入out</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">6</span>).reshape(<span class="number">2</span>, <span class="number">3</span>) + <span class="number">10</span></span><br><span class="line"></span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line">print(np.argmax(a))</span><br><span class="line">print(np.argmax(a, axis = <span class="number">0</span>))</span><br><span class="line">print(np.argmax(a, axis = <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[[10 11 12]</span><br><span class="line"> [13 14 15]]</span><br><span class="line">5</span><br><span class="line">[1 1 1]</span><br><span class="line">[2 2]</span><br></pre></td></tr></table></figure>
+<h1 id="numpy-bincount"><a href="#numpy-bincount" class="headerlink" title="numpy.bincount"></a>numpy.bincount</h1><p><strong>numpy.bincount(x, weights=None, minlength=0)</strong></p>
+<p>统计每个元素的出现次数。</p>
+<p>bin值为x中最大数字的值+1，函数返回一个长度为bin的array，表示每个数字的出现次数。</p>
+<p>参数：</p>
+<ul>
+<li><code>x</code>：一维非负整数array</li>
+<li><code>weights</code>：一个与x具有相同shape的array，可以为不同位置设定不同的统计权重</li>
+<li><code>minlength</code>：限定bin的最小值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.bincount(np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">7</span>])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1 3 1 1 0 0 0 1]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w = np.array([<span class="number">0.3</span>, <span class="number">0.5</span>, <span class="number">0.2</span>, <span class="number">0.7</span>, <span class="number">1</span>, <span class="number">-0.6</span>])</span><br><span class="line">x = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line">print(np.bincount(x,  weights=w))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0.3 0.7 1.1]</span><br></pre></td></tr></table></figure>
+<h1 id="numpy-split-array-split"><a href="#numpy-split-array-split" class="headerlink" title="numpy.split/array_split"></a>numpy.split/array_split</h1><p><strong>numpy.split(ary, indices_or_sections, axis=0)</strong></p>
+<p><strong>numpy.array_split(ary, indices_or_sections, axis=0)</strong></p>
+<p>将array分割为若干个sub-arrays。</p>
+<p>若第二个参数是一个int N，则将array均分为N份；若第二个参数是一个一维array，则表示分割点。</p>
+<p>split()和array_split()的区别在于当第二个参数为int且无法整除序列长度时，split()会报错，而array_split()不会。</p>
+<p>参数：</p>
+<ul>
+<li><code>ary</code>：待分割array</li>
+<li><code>indices_or_sections</code>：含义如上所述</li>
+<li><code>axis</code>：分割所沿的维度</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">9</span>)</span><br><span class="line">y = np.arange(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">print(np.split(x, <span class="number">3</span>))</span><br><span class="line">print(np.array_split(y, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">print(np.split(x, [<span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">10</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[array([0, 1, 2]), array([3, 4, 5]), array([6, 7, 8])]</span><br><span class="line">[array([0, 1, 2]), array([3, 4, 5]), array([6, 7])]</span><br><span class="line">[array([0, 1, 2]), array([3, 4]), array([5]), array([6, 7, 8]), array([], dtype&#x3D;int32)]</span><br></pre></td></tr></table></figure>
+<h1 id="numpy-vstack-hstack"><a href="#numpy-vstack-hstack" class="headerlink" title="numpy.vstack/hstack"></a>numpy.vstack/hstack</h1><p><strong>numpy.vstack(tup)</strong></p>
+<p><strong>numpy.hstack(tup)</strong></p>
+<p>沿垂直/水平方向堆叠array。</p>
+<p>参数：</p>
+<ul>
+<li><code>tup</code>：一组arrays，除第一/二维度外应具有相同的shape</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">b = np.array([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">print(np.vstack((a,b)))</span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">1</span>],[<span class="number">2</span>],[<span class="number">3</span>]])</span><br><span class="line">b = np.array([[<span class="number">2</span>],[<span class="number">3</span>],[<span class="number">4</span>]])</span><br><span class="line">print(np.hstack((a,b)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[[1 2 3]</span><br><span class="line"> [2 3 4]]</span><br><span class="line">[[1 2]</span><br><span class="line"> [2 3]</span><br><span class="line"> [3 4]]</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
