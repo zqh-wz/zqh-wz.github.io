@@ -23,13 +23,13 @@
 <meta property="og:description" content="虽说是Hello World，但其实也不是第一次搭hexo博客了。 在家的一个学期过的实在太快，转眼就要大二了。看到不少朋友都在写博客，想了想，把以前的博客直接删了，然后把这个博客给搭了起来。 转转悠悠一整天，终于找到了这个比较合我意的主题fexo，感谢作者。 决定重新开始写博客的主要导火索是这个学期在家太咸鱼了，决定奋发图强，多写写东西，多总结总结。 嗯，就是这样。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-10T14:42:49.000Z">
-<meta property="article:modified_time" content="2020-07-16T05:56:43.030Z">
+<meta property="article:modified_time" content="2020-07-16T05:56:43.000Z">
 <meta name="twitter:card" content="summary">
 
   
 
   
-    <link rel="icon" href="/writting.png">
+    <link rel="icon" href="/favicon.ico">
   
 
   <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
@@ -38,15 +38,6 @@
   
     
 <link rel="stylesheet" href="/css/personal-style.css">
-
-  
-
-  
-
-  
-
-  
-
 
   
 
@@ -133,9 +124,6 @@
 
 
       
-
-      
-      
     </div>
   </header>
 
@@ -152,8 +140,6 @@
 
 </article>
 
-
-   
 
    
 
@@ -219,27 +205,6 @@
 </div>
 
 
-
-  
-      <div class="fexo-comments comments-post">
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-  </div>
-
-  
-
   <script type="text/javascript">
   function loadScript(url, callback) {
     var script = document.createElement('script')
@@ -268,7 +233,22 @@
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

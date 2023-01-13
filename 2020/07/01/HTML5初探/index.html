@@ -23,13 +23,13 @@
 <meta property="og:description" content="HTML（超文本标记语言，Hyper Text Markup Language）是用来描述网页的一种语言，是一种标记语言而不是编程语言。 HTML5引入了一些新特性，包括用于绘画的canvas标签、用于媒介回放的video和audio元素等。 常用浏览器基本上都支持了HTML5。 标签 HTML基础标签 head、body title指示网页标题  HTML标题 &lt;h1&gt;...&lt;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-01T01:15:29.000Z">
-<meta property="article:modified_time" content="2020-07-01T01:16:48.891Z">
+<meta property="article:modified_time" content="2020-07-01T01:16:48.000Z">
 <meta name="twitter:card" content="summary">
 
   
 
   
-    <link rel="icon" href="/writting.png">
+    <link rel="icon" href="/favicon.ico">
   
 
   <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
@@ -38,15 +38,6 @@
   
     
 <link rel="stylesheet" href="/css/personal-style.css">
-
-  
-
-  
-
-  
-
-  
-
 
   
 
@@ -110,7 +101,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Outline</strong>
+    <strong class="toc-title">Posts List</strong>
     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标签"><span class="toc-text">标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML元素"><span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML属性"><span class="toc-text">HTML属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML格式化"><span class="toc-text">HTML格式化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML样式"><span class="toc-text">HTML样式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML链接"><span class="toc-text">HTML链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML表格"><span class="toc-text">HTML表格</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML列表"><span class="toc-text">HTML列表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML块"><span class="toc-text">HTML块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML布局"><span class="toc-text">HTML布局</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML表单"><span class="toc-text">HTML表单</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML框架"><span class="toc-text">HTML框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML背景"><span class="toc-text">HTML背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML实体"><span class="toc-text">HTML实体</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML全局属性"><span class="toc-text">HTML全局属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构元素"><span class="toc-text">结构元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非主体结构元素"><span class="toc-text">非主体结构元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#表单元素与属性"><span class="toc-text">表单元素与属性</span></a></li></ol>
   </div>
 
@@ -137,9 +128,6 @@
 
 
 
-      
-
-      
       
     </div>
   </header>
@@ -507,8 +495,6 @@
 
    
 
-   
-
 
 
 </div>
@@ -571,27 +557,6 @@
 </div>
 
 
-
-  
-      <div class="fexo-comments comments-post">
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-  </div>
-
-  
-
   <script type="text/javascript">
   function loadScript(url, callback) {
     var script = document.createElement('script')
@@ -620,7 +585,22 @@
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

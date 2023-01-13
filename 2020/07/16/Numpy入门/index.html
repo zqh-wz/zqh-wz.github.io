@@ -23,13 +23,13 @@
 <meta property="og:description" content="Numpy是一个python库，能够为高维数组的运算提供支持。 12345678import numpy as npa &#x3D; np.array([1, 2, 3]) # 创建一维向量print(type(a))print(a.shape) # 以元组形式返回各维度的大小print(a[0], a[1], a[2]) # 访问内容a[0] &#x3D; 5print(a) 1234&lt;class &#39;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T05:41:53.000Z">
-<meta property="article:modified_time" content="2020-07-16T05:51:03.249Z">
+<meta property="article:modified_time" content="2020-07-16T05:51:03.000Z">
 <meta name="twitter:card" content="summary">
 
   
 
   
-    <link rel="icon" href="/writting.png">
+    <link rel="icon" href="/favicon.ico">
   
 
   <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
@@ -38,15 +38,6 @@
   
     
 <link rel="stylesheet" href="/css/personal-style.css">
-
-  
-
-  
-
-  
-
-  
-
 
   
 
@@ -133,9 +124,6 @@
 
 
       
-
-      
-      
     </div>
   </header>
 
@@ -204,8 +192,6 @@
 
    
 
-   
-
 
 
 </div>
@@ -268,27 +254,6 @@
 </div>
 
 
-
-  
-      <div class="fexo-comments comments-post">
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-  </div>
-
-  
-
   <script type="text/javascript">
   function loadScript(url, callback) {
     var script = document.createElement('script')
@@ -317,7 +282,22 @@
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

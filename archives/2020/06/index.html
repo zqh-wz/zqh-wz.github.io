@@ -25,7 +25,7 @@
   
 
   
-    <link rel="icon" href="/writting.png">
+    <link rel="icon" href="/favicon.ico">
   
 
   <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
@@ -34,15 +34,6 @@
   
     
 <link rel="stylesheet" href="/css/personal-style.css">
-
-  
-
-  
-
-  
-
-  
-
 
   
 
@@ -57,13 +48,6 @@
 
   <div class="content content-archive">
   <div class="page-header">
-
-  
-    <div class="breadcrumb">
-      <div class="location">Blog</div>
-      <i class="icon-location"></i>
-    </div>
-  
 
   
   <div class="toolbox">
@@ -274,9 +258,6 @@
 </div>
 
 
-
-  
-
   <script type="text/javascript">
   function loadScript(url, callback) {
     var script = document.createElement('script')
@@ -305,7 +286,22 @@
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

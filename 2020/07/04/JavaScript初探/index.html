@@ -25,14 +25,14 @@
 <meta property="og:image" content="https://www.runoob.com/images/htmltree.gif">
 <meta property="og:image" content="https://bkimg.cdn.bcebos.com/pic/810a19d8bc3eb135481babffac1ea8d3fc1f4491?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5">
 <meta property="article:published_time" content="2020-07-04T13:05:48.000Z">
-<meta property="article:modified_time" content="2020-07-04T14:34:46.942Z">
+<meta property="article:modified_time" content="2020-07-04T14:34:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://www.runoob.com/images/htmltree.gif">
 
   
 
   
-    <link rel="icon" href="/writting.png">
+    <link rel="icon" href="/favicon.ico">
   
 
   <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
@@ -41,15 +41,6 @@
   
     
 <link rel="stylesheet" href="/css/personal-style.css">
-
-  
-
-  
-
-  
-
-  
-
 
   
 
@@ -113,7 +104,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Outline</strong>
+    <strong class="toc-title">Posts List</strong>
     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript基础"><span class="toc-text">JavaScript基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript异常捕获"><span class="toc-text">JavaScript异常捕获</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript事件"><span class="toc-text">JavaScript事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM"><span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作HTML元素"><span class="toc-text">操作HTML元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作CSS"><span class="toc-text">操作CSS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM-EventListener"><span class="toc-text">DOM EventListener</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件流"><span class="toc-text">事件流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件处理"><span class="toc-text">事件处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件对象"><span class="toc-text">事件对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript对象"><span class="toc-text">JavaScript对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义对象"><span class="toc-text">自定义对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String字符串对象"><span class="toc-text">String字符串对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Date日期对象"><span class="toc-text">Date日期对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array数组对象"><span class="toc-text">Array数组对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Math对象"><span class="toc-text">Math对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM对象控制HTML"><span class="toc-text">DOM对象控制HTML</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#浏览器对象"><span class="toc-text">浏览器对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#window对象"><span class="toc-text">window对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计时事件"><span class="toc-text">计时事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#History对象"><span class="toc-text">History对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Location对象"><span class="toc-text">Location对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Screen对象"><span class="toc-text">Screen对象</span></a></li></ol></li></ol>
   </div>
 
@@ -140,9 +131,6 @@
 
 
 
-      
-
-      
       
     </div>
   </header>
@@ -376,8 +364,6 @@
 
    
 
-   
-
 
 
 </div>
@@ -440,27 +426,6 @@
 </div>
 
 
-
-  
-      <div class="fexo-comments comments-post">
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-  </div>
-
-  
-
   <script type="text/javascript">
   function loadScript(url, callback) {
     var script = document.createElement('script')
@@ -489,7 +454,22 @@
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
