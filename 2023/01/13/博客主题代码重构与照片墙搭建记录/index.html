@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>博客主题代码重构与照片墙搭建记录 | Don&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="" />
+  
+
+  <meta name="description" content="现在是大四学年的寒假，刚刚结束毕设开题答辩。 大三结束的暑假，在家里找出了尘封十多年的老单反，带到了北京。半年以来，通过各种途径重新学习了很多摄影的基础知识、当前影像行业的发展现状、最新相机的参数性能和价格。这半年也带着相机出去走了走，拍出过那么几张满意的照片。 由于原相机搭配的狗头经过岁月风霜，内部镜片已经有发霉的表现，拍出的照片总像是蒙着一层雾般不真切。所以这半年来也化身咸鱼小能手，在咸鱼上达">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客主题代码重构与照片墙搭建记录">
+<meta property="og:url" content="http://yoursite.com/2023/01/13/%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%E4%B8%8E%E7%85%A7%E7%89%87%E5%A2%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Don&#39;s Blog">
+<meta property="og:description" content="现在是大四学年的寒假，刚刚结束毕设开题答辩。 大三结束的暑假，在家里找出了尘封十多年的老单反，带到了北京。半年以来，通过各种途径重新学习了很多摄影的基础知识、当前影像行业的发展现状、最新相机的参数性能和价格。这半年也带着相机出去走了走，拍出过那么几张满意的照片。 由于原相机搭配的狗头经过岁月风霜，内部镜片已经有发霉的表现，拍出的照片总像是蒙着一层雾般不真切。所以这半年来也化身咸鱼小能手，在咸鱼上达">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-13T15:42:30.000Z">
+<meta property="article:modified_time" content="2023-01-14T08:41:16.886Z">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">目录</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">目录</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#技术路线调研与选择"><span class="toc-text">技术路线调研与选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo-框架"><span class="toc-text">Hexo 框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sass-和-gulp"><span class="toc-text">sass 和 gulp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原主题精简"><span class="toc-text">原主题精简</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#瀑布流实现"><span class="toc-text">瀑布流实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#页面排版样式"><span class="toc-text">页面排版样式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图片弹出框"><span class="toc-text">图片弹出框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图床和添加图片逻辑"><span class="toc-text">图床和添加图片逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-博客主题代码重构与照片墙搭建记录" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">博客主题代码重构与照片墙搭建记录</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2023.01.13</span>
+      </span>
+
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/%E5%85%B6%E5%AE%83/">其它</a>
+  </span>
+
+
+
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>现在是大四学年的寒假，刚刚结束毕设开题答辩。</p>
+<p>大三结束的暑假，在家里找出了尘封十多年的老单反，带到了北京。半年以来，通过各种途径重新学习了很多摄影的基础知识、当前影像行业的发展现状、最新相机的参数性能和价格。这半年也带着相机出去走了走，拍出过那么几张满意的照片。</p>
+<p>由于原相机搭配的狗头经过岁月风霜，内部镜片已经有发霉的表现，拍出的照片总像是蒙着一层雾般不真切。所以这半年来也化身咸鱼小能手，在咸鱼上达成了好几笔交易。截至目前，已经凑齐了 15-85mm、50mm 定焦和 55-250mm 三颗镜头，组成了相对完整的焦段范围。</p>
+<p>手头上比较满意的照片积累的多了，但又找不到地方来存放和展示。前段时间灵机一动，想到可以放在同样沉寂已久的个人博客上，找一个 hexo 模板套一套，搭建一个个人摄影作品的展示页。于是就有了这篇文章。调研、实验和代码编写，总共用时大约一天半完成。</p>
+<h1 id="技术路线调研与选择"><a href="#技术路线调研与选择" class="headerlink" title="技术路线调研与选择"></a>技术路线调研与选择</h1><p>最初希望能够直接找到一个合适的 hexo 主题，直接套用即可。但经过搜索和浏览，发现 hexo 主题仍然是以用于图文博客记录为主，没有找到合适的主题。由于想要同时继承博客原有的功能和内容，故也不考虑更改博客框架了。</p>
+<p>通过进一步调研和实验，借助一些开源小代码，能够通过 css+js 实现本地 html 文件的瀑布流的效果，并且也有合适美观的设计样式参考。由于 hexo 博客是静态网页托管，故这一条路线必然是可以走得通的。于是决定手动改写博客的主题文件，自己造轮子。</p>
+<h1 id="Hexo-框架"><a href="#Hexo-框架" class="headerlink" title="Hexo 框架"></a>Hexo 框架</h1><p>hexo 博客本身的项目结构是相当一目了然的，尤其是在拥有了软工使用 Vue 搭建前端的基础之后。主目录下没有太多东西，主要就是一个 <code>_config.yml</code> 配置文件和文章的 markdown 文件。</p>
+<p>主题文件夹中是自定义的核心部件，但其实结构也非常清晰。<code>layout</code> 文件夹由 ejs 文件组成，负责定义页面的 html 结构，<code>_partial</code> 用于构造模块式的 html 组件。ejs 文件结构也很简单，使用特定的模板语法在 html 网页中使用 js 嵌入内容，和 Vue 的语法颇有几分相像，基本就是一个照猫画虎的过程。</p>
+<p><code>source</code> 文件夹存放网页上需要使用的静态文件，如 css、js、fonts、images等，网页渲染所需要用到的 css 和 js 直接放在这里即可。</p>
+<h1 id="sass-和-gulp"><a href="#sass-和-gulp" class="headerlink" title="sass 和 gulp"></a>sass 和 gulp</h1><p>我所继承的这个主题的作者使用 sass 编写样式，这个东西也非常直观，它和 css 的关系大概就是 cmake 和 makefile 的关系。theme 目录下有一个 <code>gulpfile.js</code> 文件。gulp 是一个自动化构建工具，那么很明显从 sass 到 css 的转换就是通过它实现的了。</p>
+<p>我本机上所下载的 node.js 版本过高，导致 gulp 的版本也需要升级。从 gulp3 到 gulp4 的转换还使得我必须手动修改 <code>gulpfile.js</code> 的部分代码，不过幸好都解决了。</p>
+<h1 id="原主题精简"><a href="#原主题精简" class="headerlink" title="原主题精简"></a>原主题精简</h1><p>大概摸清了 hexo 的工作原理和项目结构之后，就可以对原来的 fexo 主题做大刀阔斧的精简了，直接删去用不到的 project、link 等页面以及相关的 sass 与 js，精简了主题内容。</p>
+<h1 id="瀑布流实现"><a href="#瀑布流实现" class="headerlink" title="瀑布流实现"></a>瀑布流实现</h1><p>照片展示当然是瀑布流布局最为科学。学习了 Unsplash 等网站的页面设计后，决定采用宽度一致的纵向瀑布流。实现上使用的是 <a href="https://github.com/raphamorim/waterfall.js" target="_blank" rel="noopener">Waterfall.js</a> 这个库搭配 <a href="https://github.com/raphamorim/imgStatus" target="_blank" rel="noopener">imgStatus</a> 用于在新图片加载完成后更新布局。</p>
+<p>不得不说这个原生 js 实现的仅 1KB 的库相当地优秀，开箱即用，简单高效。</p>
+<h1 id="页面排版样式"><a href="#页面排版样式" class="headerlink" title="页面排版样式"></a>页面排版样式</h1><p>在逛 hexo 主题的时候看到了 <a href="https://sharvaridesai.gitlab.io/hexo-theme-standrews/" target="_blank" rel="noopener">hexo-theme-standrews</a>，可以说这个极简的排版审美绝对在线。可惜没有 github 的仓库链接。但没有关系，手动审查元素，参考 css 样式自己摸出了一个类似的效果。这个网站的自适应内容使用的是 bootstrap 库实现。简单起见，我直接借鉴了里面的 <code>@media</code> 等几条 css 样式，手动实现了一个简单的自适应布局，在移动端上也能表现良好。</p>
+<h1 id="图片弹出框"><a href="#图片弹出框" class="headerlink" title="图片弹出框"></a>图片弹出框</h1><p>接下来需要实现点击图片弹出大图和详细信息的效果。我希望实现的效果是类似 Unsplash 或者是 ins 中的白色内容框，但是更加极简。然而找遍全网现有库的效果基本都是全屏深色遮罩+图片居中放大，而且普遍没有给大段文字摆放的位置。</p>
+<p>考虑到放大缩小的动效以及模态框还是不那么容易手工实现，所以最终还是在 <a href="https://github.com/lokesh/lightbox2" target="_blank" rel="noopener">Lightbox2</a> 基础上进行了自定义的魔改，对其中的 css 样式和 js 代码均有改动。</p>
+<h1 id="图床和添加图片逻辑"><a href="#图床和添加图片逻辑" class="headerlink" title="图床和添加图片逻辑"></a>图床和添加图片逻辑</h1><p>图床在调研后选用了SM.MS。</p>
+<p>发现了一个非常棒的在线<a href="https://imageresizer.com/image-compressor" target="_blank" rel="noopener">图像压缩网站</a>，可以预览前后对比以选取合适的输出品质，而且压缩效果相当好。</p>
+<p>我们新增的照片墙页面实际上是一个 hexo page。为了和主题解耦，我们希望把照片相关的信息写到主文件夹的 markdown 文件而不是 theme 文件夹的配置里。但可惜 hexo 似乎没有区分不同 page 的文章内容的这个功能，所有的文章都在统一的 _post 文件夹里。于是只好放到照片这个页的 <code>index.md</code> 里面。由于在渲染时没有对 markdown 内容的解析功能，所以手动编写了 js 代码对 raw 内容进行解析，得到照片及相关信息的列表，并同步在 Lightbox2 的 js 代码以及 layout 中做了相应的改动与适配。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>魔改后的主题 <a href="https://github.com/zqh-wz/simfexo" target="_blank" rel="noopener">simfexo</a> 已经挂在了 github 仓库中。</p>
+<p>这一天半的敏捷开发过程实际上在很短的时间内学习了很多东西，比如 hexo 目录结构和原理、ejs、sass、gulp 等等，这些都是首次接触的内容。但无需非常丰富的使用经验，简单看一看目前已有的代码，结合几次搜索，我就能够很快达到自己的更改目的。</p>
+<p>严格来说这可以看作是我至少第三次对博客做搭建或者改动了。但即使是两年前重新搭建起这个新网站时，我仍然需要借助视频教程来使用 hexo 框架，自定义的部分也只能够改一改原主题中的配置文件，和高中时其实并没有太大区别。但现在我在很短的时间内就可以借助搜索甚至大部分时候无需检索直接领会框架的结构或者是工具的作用，完成主题的个性化定制。不禁感叹这两年的科班学习还是有在身上打下深厚的计算机基础的。</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
