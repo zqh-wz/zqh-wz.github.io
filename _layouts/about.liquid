@@ -59,10 +59,28 @@ layout: default
     <!-- Selected papers -->
     {% if page.selected_papers %}
       <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+        Publications
       </h2>
       {% include selected_papers.liquid %}
     {% endif %}
+
+    <!-- Competitions -->
+      <h2>
+        Competitions
+      </h2>
+      {%- include competitions.html limit=true %}
+
+    <!-- Awards -->
+      <h2>
+        Awards
+      </h2>
+      {%- include awards.html limit=true %}
+
+    <!-- Teaching -->
+      <h2>
+        Teaching
+      </h2>
+      {%- include teaching.html limit=true %}
 
     <!-- Social -->
     {% if page.social %}
