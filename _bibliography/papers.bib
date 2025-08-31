@@ -1,14 +1,28 @@
 ---
 ---
 
-@inproceedings {todo,
-author = {Qihao Zhang and Mingshu Zhai and Rui Sun and Jidong Zhai},
-title = {QFactory: Accelerating Quantized Large Language Model Serving with Qtile Graphs},
-booktitle = {2025 USENIX Annual Technical Conference (USENIX ATC 25)},
-year = {2025},
-publisher = {USENIX Association},
-selected = {true},
-abbr = {ATC '25}
+@inproceedings{DBLP:conf/usenix/ZhangZSZ25,
+  author       = {Qihao Zhang and
+                  Mingshu Zhai and
+                  Rui Sun and
+                  Jidong Zhai},
+  editor       = {Deniz Altinb{\"{u}}ken and
+                  Ryan Stutsman},
+  title        = {QFactory: Accelerating Quantized Large Language Model Serving with
+                  Qtile Graphs},
+  booktitle    = {Proceedings of the 2025 {USENIX} Annual Technical Conference, {USENIX}
+                  {ATC} 2025, Boston, MA, USA, July 7-9, 2025},
+  pages        = {631--646},
+  publisher    = {{USENIX} Association},
+  year         = {2025},
+  url          = {https://www.usenix.org/conference/atc25/presentation/zhang-qihao},
+  timestamp    = {Thu, 17 Jul 2025 16:58:23 +0200},
+  biburl       = {https://dblp.org/rec/conf/usenix/ZhangZSZ25.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+  abstract = {Quantization is a critical technique for accelerating large language models. To achieve tangible speedups, weight dequantization must be performed on-the-fly, necessitating tailored quantized kernels for various quantization algorithms and precision formats. Existing methods typically rely on a static eager execution paradigm for dequantization operations, which overlooks a broader range of potential optimizations, leading to suboptimal performance. In this paper, we present QFactory, an efficient compilation framework designed to generate high-performance quantized kernels. QFactory introduces a novel Qtile abstraction that facilitates the representation of quantized tensors, transforming the traditional tensor computation graph into a Qtile-graph (Qgraph). Leveraging this QGraph abstraction, QFactory first explores graph-level Qtile computation transformations to generate equivalent QGraphs, thereby expanding the search space for optimizations. Subsequently, QFactory employs operator-level Qtile scheduling to identify optimal memory loading strategies for each Qtile within the QGraph before generating the final code. Experimental results demonstrate that QFactory achieves an average performance improvement of 1.66× over existing systems and delivers 1.23× end-toend generation speedup when integrated into state-of-the-art large language model serving systems.}
+  pdf = {https://www.usenix.org/conference/atc25/presentation/zhang-qihao}
+  selected = {true},
+  abbr = {ATC '25}
 }
 
 
