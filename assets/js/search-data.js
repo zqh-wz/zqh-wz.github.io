@@ -57,6 +57,9 @@ ninja.data = [{
           section: "Teaching",},{id: "teaching-ta-principles-and-practice-of-compiler-construction",
           title: 'TA, Principles and Practice of Compiler Construction',
           description: "",
+          section: "Teaching",},{id: "teaching-artifact-evaluation-committee-member-of-cgo-2026",
+          title: 'Artifact Evaluation Committee Member of CGO ‘2026',
+          description: "",
           section: "Teaching",},{
       id: 'light-theme',
       title: 'Change theme to light',
