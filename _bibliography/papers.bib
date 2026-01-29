@@ -1,15 +1,26 @@
 ---
 ---
 
-@inproceedings {todo,
-author = {Qihao Zhang and Mingliang Tang and Mingshu Zhai and Kinman Lei and Jidong Zhai},
+@inproceedings{10.1145/3774934.3786419,
+author = {Zhang, Qihao and Tang, MingLiang and Zhai, Mingshu and Lei, Kinman and Zhai, Jidong},
 title = {RoMeo: Mitigating Dual-dimensional Outliers with Rotated Mixed Precision Quantization},
 year = {2026},
+isbn = {9798400723100},
 publisher = {Association for Computing Machinery},
-booktitle = {Proceedings of the 31th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3774934.3786419},
+doi = {10.1145/3774934.3786419},
+abstract = {Mixed precision quantization has been adopted to accelerate large language models (LLMs) serving by leveraging high-throughput low-precision compute units in GPUs while preserving outliers in higher precision to maintain model accuracy. However, existing methods focus on mitigating single-dimensional channel-wise outliers, leading to model accuracy degradation when scaled to 4-bit precision. In this paper, we present an algorithm-system co-design to effectively handle dual-dimensional outliers across both channel and token dimensions in LLMs. We introduce a novel rotation-based mixed precision quantization algorithm that suppresses and migrates channel-wise outliers to the token dimension. Based on this algorithm, we propose RoMeo, an efficient LLM serving system designed to overcome the unique system challenges posed by sparse computation pattern and dynamic outlier detection inherent in token-wise outlier handling. Extensive evaluations across various LLMs demonstrate that RoMeo improves quantized model accuracy by up to 5.17\% compared to state-of-the-art methods QuaRot and MixQ, while maintaining efficiency comparable to uniform precision quantizations, achieving up to 2.10 \texttimes{} end-to-end speedup over half-precision baseline. RoMeo is available at https://github.com/thu-pacman/RoMeo.},
+booktitle = {Proceedings of the 31st ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming},
+pages = {273–287},
+numpages = {15},
+keywords = {Algorithm-System Co-design, Large Language Model, Mixed Precision Quantization},
+location = {Sydney, NSW, Australia},
+series = {PPoPP '26},
 selected = {true},
 abbr = {PPoPP '26}
 }
+
 
 @inproceedings{DBLP:conf/usenix/ZhangZSZ25,
   author       = {Qihao Zhang and
