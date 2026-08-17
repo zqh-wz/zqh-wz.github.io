@@ -23,3 +23,4 @@ In my previous work, I focused on the quantization of large language models, opt
 Currently, I am dedicated to pushing the frontier of artificial intelligence through rigorous system-level optimizations and codesign for large-scale model training and inference at <a href='https://mimo.xiaomi.com/'>MiMo</a>.
 
 > Beyond ML systems, I am also interested in the "infra" of the stage. I am an active member of <a href='https://space.bilibili.com/431664659/'>the THU Student Musical Club</a>, where I have been fortunate to work alongside many incredibly talented fellow students across multiple musical productions. As part of the stage execution team, I take on different roles across productions, carefully crafting and precisely executing sound and lighting cues, managing stage props, and helping bring each production to life.
+{: style="font-size: 1rem;"}
